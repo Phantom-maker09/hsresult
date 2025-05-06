@@ -39,18 +39,32 @@
     <p><a href="privacy.html">Privacy Policy</a></p>
   </div>
   <script>
-  const examDate = new Date("May 07, 2025 12:00:00").getTime(); // estimated result date
+  const examDate = new Date("May 7, 2025 12:30:00").getTime(); // Exact result date & time
   const timer = setInterval(() => {
     const now = new Date().getTime();
     const diff = examDate - now;
-    if (diff < 0) {
+
+    if (diff <= 0) {
       document.getElementById("countdown").innerText = "Results are expected anytime now.";
-      return clearInterval(timer);
+      clearInterval(timer);
+      return;
     }
+
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    document.getElementById("countdown").innerText = `Approx. ${days} days left for result.`;
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    let display = "";
+    if (days > 0) display += `${days}d `;
+    if (hours > 0 || days > 0) display += `${hours}h `;
+    if (minutes > 0 || hours > 0 || days > 0) display += `${minutes}m `;
+    display += `${seconds}s`;
+
+    document.getElementById("countdown").innerText = `Time left for result: ${display}`;
   }, 1000);
 </script>
+
 
 </body>
 </html>
