@@ -35,5 +35,15 @@
     <p>Good luck to all students!</p>
     <p><a href="privacy.html">Privacy Policy</a></p>
   </div>
+  <script>
+  const examDate = new Date("May 24, 2025 12:00:00").getTime(); // estimated result date
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = examDate - now;
+    if (diff < 0) return clearInterval(timer);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("countdown").innerText = `Approx. ${days} days left for result.`;
+  }, 1000);
+</script>
 </body>
 </html>
